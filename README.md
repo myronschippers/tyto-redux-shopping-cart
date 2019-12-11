@@ -18,7 +18,7 @@ Redux has been added to this project, but the project isn't really using redux. 
 - [x] Update the **ProductForm** to dispatch to the `productReducer`
 - [x] When **Add to Cart** is clicked on, dispatch that product to the `checkoutReducer`
 - [x] Display products in the cart on the **Checkout** page
-- [ ] When the **Checkout** button is clicked on the **Checkout** page, clear the cart
+- [x] When the **Checkout** button is clicked on the **Checkout** page, clear the cart
 
 ## Stretch
 
