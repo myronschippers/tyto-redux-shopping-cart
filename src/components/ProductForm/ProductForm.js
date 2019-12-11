@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+import mapStoreToProps from '../../redux/mapStoreToProps';
+
 class ProductForm extends Component {
     // You will need to keep this state in this component
     // if you're only using something in one component,
@@ -29,7 +32,11 @@ class ProductForm extends Component {
     addProduct = (event) => {
         event.preventDefault();
         // TODO: Dispatch here
-        this.props.addNewProduct(this.state.productToAdd);
+        this.props.dispatch({
+            type: 'ADD_NEW_PRODUCT',
+            payload: this.state.productToAdd
+        });
+        // this.props.addNewProduct(this.state.productToAdd);
     }
 
     render() {
@@ -43,4 +50,4 @@ class ProductForm extends Component {
     }
 }
 
-export default ProductForm;
+export default connect(mapStoreToProps)(ProductForm);

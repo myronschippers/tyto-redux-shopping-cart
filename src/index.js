@@ -4,8 +4,9 @@ import './index.css';
 import App from './components/App/App';
 
 // Redux
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 
 // Default set of products
 const products = [
@@ -25,6 +26,18 @@ const productReducer = (state = products, action) => {
 // Items in the cart, this reducer is incomplete
 const checkoutReducer = (state = [], action) => {
     // TODO: Products added to the cart
+    if (action.type === 'ADD_TO_CART') {
+        return [
+            ...state,
+            // action.payload = {
+            //     name: 'string',
+            //     price: number
+            // }
+            action.payload,
+        ];
+    } else if (action.type === 'CLEAR_CART') {
+        return [];
+    } 
     
     return state;
 };
@@ -35,6 +48,7 @@ const storeInstance = createStore(
         productReducer,
         checkoutReducer
     }),    
+    applyMiddleware(logger)
 );
 
 // Wrap our App in a Provider, this makes Redux available in
